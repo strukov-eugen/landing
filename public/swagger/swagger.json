@@ -1,0 +1,125 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "My API",
+        "description": "Описание вашего API для работы c пользователями и аутентификацией.",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/v1": {},
+        "/api/v1/auth/send-code": {
+            "post": {
+                "summary": "Отправка OTP-кода",
+                "description": "Отправляет OTP-код на указанный номер телефона через внешний API.",
+                "operationId": "5896470c484fc9fc78f1cf4e33142bf4",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "phone",
+                                    "evinaRequestId"
+                                ],
+                                "properties": {
+                                    "phone": {
+                                        "type": "string",
+                                        "example": "971500000000"
+                                    },
+                                    "evinaRequestId": {
+                                        "type": "string",
+                                        "example": "123e4567-e89b-12d3-a456-426614174000"
+                                    },
+                                    "clickid": {
+                                        "type": "string",
+                                        "example": "CLICKID123",
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OTP успешно отправлен"
+                    },
+                    "400": {
+                        "description": "Ошибка запроса"
+                    },
+                    "500": {
+                        "description": "Ошибка сервера"
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/verify-code": {
+            "post": {
+                "summary": "Верификация OTP-кода",
+                "description": "Проверяет введённый пользователем OTP-код через внешний API.",
+                "operationId": "74865ce789ff8713ada2fd5e283ead59",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "phone",
+                                    "code",
+                                    "sessionId",
+                                    "evinaRequestId"
+                                ],
+                                "properties": {
+                                    "phone": {
+                                        "type": "string",
+                                        "example": "971500000000"
+                                    },
+                                    "code": {
+                                        "type": "string",
+                                        "example": "1234"
+                                    },
+                                    "sessionId": {
+                                        "type": "string",
+                                        "example": "abc123reqid"
+                                    },
+                                    "evinaRequestId": {
+                                        "type": "string",
+                                        "example": "123e4567-e89b-12d3-a456-426614174000"
+                                    },
+                                    "clickid": {
+                                        "type": "string",
+                                        "example": "CLICKID123",
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OTP успешно верифицирован"
+                    },
+                    "400": {
+                        "description": "Неверный код или данные"
+                    },
+                    "500": {
+                        "description": "Ошибка сервера"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "BearerAuth": {
+                "type": "http",
+                "description": "JWT аутентификация",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    }
+}

