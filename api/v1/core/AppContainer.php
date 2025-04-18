@@ -1,13 +1,13 @@
 <?php
 
-namespace PromptBuilder\core;
+namespace Landing\core;
 
 use DI\Container;
 use DI\ContainerBuilder;
 use function DI\autowire;
 
-//use PromptBuilder\Repositories\UserRepository;
-//use PromptBuilder\Repositories\AnotherRepository;
+//use Landing\Repositories\UserRepository;
+//use Landing\Repositories\AnotherRepository;
 
 class AppContainer {
     public static function getContainer(): Container {

@@ -1,6 +1,6 @@
 <?php
 
-namespace PromptBuilder\core;
+namespace Landing\core;
 
 class MiddlewareHandler
 {

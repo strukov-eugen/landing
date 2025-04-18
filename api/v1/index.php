@@ -1,10 +1,10 @@
 <?php
 
-namespace PromptBuilder;
+namespace Landing;
 
-use PromptBuilder\core\App;
-//use PromptBuilder\middlewares\AuthMiddleware;
-use PromptBuilder\middlewares\CorsMiddleware;
+use Landing\core\App;
+//use Landing\middlewares\AuthMiddleware;
+use Landing\middlewares\CorsMiddleware;
 use Dotenv\Dotenv;
 
 require_once __DIR__ . '/../../vendor/autoload.php';

@@ -1,9 +1,9 @@
 <?php
 
-namespace PromptBuilder\controllers;
+namespace Landing\controllers;
 
-use PromptBuilder\core\Request;
-use PromptBuilder\core\Response;
+use Landing\core\Request;
+use Landing\core\Response;
 
 class AuthController {
 

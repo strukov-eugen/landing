@@ -1,5 +1,5 @@
 <?php
 
-$router->post('/send-code', 'PromptBuilder\controllers\AuthController@sendCode');
+$router->post('/send-code', 'Landing\controllers\AuthController@sendCode');
 
-$router->post('/verify-code', 'PromptBuilder\controllers\AuthController@verifyCode');
+$router->post('/verify-code', 'Landing\controllers\AuthController@verifyCode');

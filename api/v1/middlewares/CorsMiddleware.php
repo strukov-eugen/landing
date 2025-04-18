@@ -1,9 +1,9 @@
 <?php
 
-namespace PromptBuilder\middlewares;
+namespace Landing\middlewares;
 
-use PromptBuilder\core\Request;
-use PromptBuilder\core\Response;
+use Landing\core\Request;
+use Landing\core\Response;
 
 class CorsMiddleware
 {

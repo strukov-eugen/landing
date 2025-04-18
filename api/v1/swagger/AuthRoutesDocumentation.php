@@ -1,6 +1,6 @@
 <?php
 
-namespace PromptBuilder\swagger;
+namespace Landing\swagger;
 
 use OpenApi\Attributes as OA;
 

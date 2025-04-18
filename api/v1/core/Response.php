@@ -1,6 +1,6 @@
 <?php
 
-namespace PromptBuilder\core;
+namespace Landing\core;
 
 class Response {
     public function json($data, $status = 200)
