@@ -16,7 +16,7 @@ class CorsMiddleware
 
         // If it's a preflight request (OPTIONS), end execution
         if ($req->getMethod() === 'OPTIONS') {
-            http_response_code(204); // Нет контента
+            http_response_code(204);
             exit;
         }
 
