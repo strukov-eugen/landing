@@ -12,7 +12,7 @@ class App
         $this->middlewareHandler = new MiddlewareHandler();
     }
 
-    // Метод для добавления маршрутов или middleware
+    // Method to add routes or middleware
     public function use($routeOrMiddleware, $filePathOrHandler = null)
     {
         if (is_callable($routeOrMiddleware)) {
@@ -26,7 +26,7 @@ class App
         }
     }
 
-    // Метод для обработки запроса
+    // Method to handle the request
     public function handleRequest()
     {
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -34,45 +34,45 @@ class App
 
         foreach ($this->handlers as $handler) {
             if ($handler['type'] === 'middleware') {
-                // Предполагаем, что $handler['handler'] — это как функция, так и объект класса
+                // Assuming $handler['handler'] is either a function or a class object
                 if (is_object($handler['handler'])) {
-                    // Это объект с методом handle
+                    // If it's an object with a handle method
                     $this->middlewareHandler->addMiddleware(function ($req, $res, $next) use ($handler) {
-                        // Проверяем, что у объекта есть метод handle
+                        // Check if the object has a handle method
                         if (method_exists($handler['handler'], 'handle')) {
-                            // Вызываем метод handle у объекта
+                            // Call the handle method of the object
                             $handler['handler']->handle($req, $res, $next);
                         }
                     });
                 } else {
-                    // Если это функция или замыкание
+                    // If it's a function or closure
                     $this->middlewareHandler->addMiddleware($handler['handler']);
                 }
             }
-            // Если это маршрут, проверяем его
+            // If it's a route, check it
             elseif ($handler['type'] === 'route' && $this->matchRoute($handler['route'], $uri)) {
 
-                // Создаем экземпляры Request и Response только один раз
+                // Create Request and Response instances only once
                 $request = new Request($method, $uri);
                 $response = new Response();
 
-                // Передаем управление в Router после выполнения всех middleware
+                // Pass control to Router after executing all middleware
                 $this->middlewareHandler->handle($request, $response, function() use ($uri, $method, $handler, $request, $response) {
                     $router = new Router($handler['route']);
-                    // Загружаем файл маршрута
+                    // Load the route file
                     require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . $handler['filePath'];
-                    $router->handle($uri, $method, $request, $response); // Обрабатываем маршрут
+                    $router->handle($uri, $method, $request, $response); // Handle the route
                 });
                 return;
             }
         }
 
-        // Если маршрут не найден, возвращаем 404
+        // If route is not found, return 404
         http_response_code(404);
         echo json_encode(["message" => "Not Found"]);
     }
 
-    // Метод для проверки совпадения маршрута с URI
+    // Method to check if the route matches the URI
     private function matchRoute($route, $uri)
     {
         $check = preg_match('#^' . preg_quote($route, '#') . '(/.*)?$#', $uri);

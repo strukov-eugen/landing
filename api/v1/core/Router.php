@@ -44,12 +44,12 @@ class Router {
                 if (class_exists($controller)) {
 
                     $container = AppContainer::getContainer();
-                    // Контейнер сам создаст контроллер и передаст зависимости
+                    // The container will create the controller and inject dependencies automatically
                     $controllerInstance = $container->get($controller);
 
                     if (method_exists($controllerInstance, $methodName)) {
                         $request->setParams($params);
-                        // Запуск цепочки Middleware
+                        // Start the middleware chain
                         $this->middlewareHandler->handle($request, $response, function() use ($controllerInstance, $methodName, $request, $response) {
                             $controllerInstance->$methodName($request, $response);
                         });
@@ -66,18 +66,18 @@ class Router {
     }
 
     private function matchRoute($route, $uri, &$params) {
-        // Убираем из URI базовый путь, если он существует
+        // Remove the base path from the URI if it exists
         $uri = preg_replace('#^' . preg_quote($this->basePath, '#') . '#', '', $uri);
         
-        // Нормализуем слэши в конце
+        // Normalize trailing slashes
         $route = rtrim($route, '/');
         $uri = rtrim($uri, '/');
 
-        // Строим паттерн маршрута, заменяя параметры в фигурных скобках на регулярные выражения
+        // Build the route pattern by replacing parameters in curly braces with regex
         $routePattern = preg_replace('/\{([\w]+)\}/', '(?P<$1>[^/]+)', $route);
         $routePattern = str_replace('/', '\/', $routePattern);
         
-        // Проверяем, совпадает ли маршрут с URI
+        // Check if the route matches the URI
         if (preg_match('/^' . $routePattern . '$/', $uri, $matches)) {
             $params = array_filter($matches, 'is_string', ARRAY_FILTER_USE_KEY);
             return true;

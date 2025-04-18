@@ -19,7 +19,7 @@ class Request {
 
         foreach ($_SERVER as $key => $value) {
             if (strpos($key, 'HTTP_') === 0) {
-                // Преобразуем заголовки из формата HTTP_X в привычный вид
+                // Convert headers from HTTP_X format to the usual form
                 $this->headers[str_replace('_', '-', substr($key, 5))] = $value;
             }
         }

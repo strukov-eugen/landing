@@ -7,34 +7,33 @@ class MiddlewareHandler
     private array $middlewares = [];
     private int $index = 0;
 
-    // Добавляем middleware в цепочку
+    // Add middleware to the chain
     public function addMiddleware($middleware)
     {
         $this->middlewares[] = $middleware;
     }
 
-    // Обрабатываем middleware и передаем управление дальше
+    // Process middleware and pass control to the next one
     public function handle(Request $req, Response $res, $next)
     {
         if ($this->index < count($this->middlewares)) {
             $middleware = $this->middlewares[$this->index];
             $this->index++;
 
-            // Вызываем текущий middleware и передаем выполнение в следующий
-            // Если middleware — объект с методом handle
+            // If the middleware is an object with a handle method
             if (is_object($middleware) && method_exists($middleware, 'handle')) {
                 $middleware->handle($req, $res, function() use ($req, $res, $next) {
-                    $this->handle($req, $res, $next);  // Рекурсивно передаем управление
+                    $this->handle($req, $res, $next);  // Recursively pass control
                 });
             }
-            // Если middleware — это замыкание (closure)
+            // If the middleware is a closure
             elseif (is_callable($middleware)) {
                 $middleware($req, $res, function() use ($req, $res, $next) {
-                    $this->handle($req, $res, $next);  // Рекурсивно передаем управление
+                    $this->handle($req, $res, $next);  // Recursively pass control
                 });
             }
         } else {
-            // Если все middleware обработаны, передаем выполнение в контроллер
+            // If all middleware have been processed, pass control to the controller
             $next();
         }
     }

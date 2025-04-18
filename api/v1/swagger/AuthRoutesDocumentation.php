@@ -7,7 +7,7 @@ use OpenApi\Attributes as OA;
 #[OA\Info(
     title: 'My API',
     version: '1.0.0',
-    description: 'Описание вашего API для работы c пользователями и аутентификацией.'
+    description: 'Description of your API for user management and authentication.'
 )]
 #[OA\PathItem(
     path: '/api/v1'
@@ -17,15 +17,15 @@ use OpenApi\Attributes as OA;
     type: 'http',
     scheme: 'bearer',
     bearerFormat: 'JWT',
-    description: 'JWT аутентификация'
+    description: 'JWT authentication'
 )]
 class AuthRoutesDocumentation
 {
-    // Атрибуты для маршрута /send-code
+    // Attributes for the /send-code route
     #[OA\Post(
         path: '/api/v1/auth/send-code',
-        summary: 'Отправка OTP-кода',
-        description: 'Отправляет OTP-код на указанный номер телефона через внешний API.',
+        summary: 'Send OTP code',
+        description: 'Sends an OTP code to the specified phone number via an external API.',
         requestBody: new OA\RequestBody(
             required: true,
             content: new OA\MediaType(
@@ -42,21 +42,21 @@ class AuthRoutesDocumentation
             )
         ),
         responses: [
-            new OA\Response(response: 200, description: 'OTP успешно отправлен'),
-            new OA\Response(response: 400, description: 'Ошибка запроса'),
-            new OA\Response(response: 500, description: 'Ошибка сервера')
+            new OA\Response(response: 200, description: 'OTP sent successfully'),
+            new OA\Response(response: 400, description: 'Bad request'),
+            new OA\Response(response: 500, description: 'Server error')
         ]
     )]
     public function sendCode(): void
     {
-        // Пустой метод для Swagger
+        // Empty method for Swagger
     }
 
-    // Атрибуты для маршрута /verify-code
+    // Attributes for the /verify-code route
     #[OA\Post(
         path: '/api/v1/auth/verify-code',
-        summary: 'Верификация OTP-кода',
-        description: 'Проверяет введённый пользователем OTP-код через внешний API.',
+        summary: 'Verify OTP code',
+        description: 'Verifies the OTP code entered by the user via an external API.',
         requestBody: new OA\RequestBody(
             required: true,
             content: new OA\MediaType(
@@ -75,14 +75,14 @@ class AuthRoutesDocumentation
             )
         ),
         responses: [
-            new OA\Response(response: 200, description: 'OTP успешно верифицирован'),
-            new OA\Response(response: 400, description: 'Неверный код или данные'),
-            new OA\Response(response: 500, description: 'Ошибка сервера')
+            new OA\Response(response: 200, description: 'OTP successfully verified'),
+            new OA\Response(response: 400, description: 'Invalid code or data'),
+            new OA\Response(response: 500, description: 'Server error')
         ]
     )]
     public function verifyCode(): void
     {
-        // Пустой метод для Swagger
+        // Empty method for Swagger
     }
-    
+
 }

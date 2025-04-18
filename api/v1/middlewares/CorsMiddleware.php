@@ -9,18 +9,18 @@ class CorsMiddleware
 {
     public function handle(Request $req, Response $res, $next)
     {
-        // Устанавливаем заголовки CORS
+        // Set CORS headers
         header('Access-Control-Allow-Origin: *');
         header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
         header('Access-Control-Allow-Headers: Origin, Content-Type, Accept, Authorization');
 
-        // Если это preflight-запрос (OPTIONS), просто завершаем выполнение
+        // If it's a preflight request (OPTIONS), end execution
         if ($req->getMethod() === 'OPTIONS') {
             http_response_code(204); // Нет контента
             exit;
         }
 
-        // Передаем управление следующему middleware или маршруту
+        // Pass control to the next middleware or route
         $next();
     }
 }

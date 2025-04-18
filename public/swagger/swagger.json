@@ -2,15 +2,15 @@
     "openapi": "3.0.0",
     "info": {
         "title": "My API",
-        "description": "Описание вашего API для работы c пользователями и аутентификацией.",
+        "description": "Description of your API for user management and authentication.",
         "version": "1.0.0"
     },
     "paths": {
         "/api/v1": {},
         "/api/v1/auth/send-code": {
             "post": {
-                "summary": "Отправка OTP-кода",
-                "description": "Отправляет OTP-код на указанный номер телефона через внешний API.",
+                "summary": "Send OTP code",
+                "description": "Sends an OTP code to the specified phone number via an external API.",
                 "operationId": "5896470c484fc9fc78f1cf4e33142bf4",
                 "requestBody": {
                     "required": true,
@@ -43,21 +43,21 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "OTP успешно отправлен"
+                        "description": "OTP sent successfully"
                     },
                     "400": {
-                        "description": "Ошибка запроса"
+                        "description": "Bad request"
                     },
                     "500": {
-                        "description": "Ошибка сервера"
+                        "description": "Server error"
                     }
                 }
             }
         },
         "/api/v1/auth/verify-code": {
             "post": {
-                "summary": "Верификация OTP-кода",
-                "description": "Проверяет введённый пользователем OTP-код через внешний API.",
+                "summary": "Verify OTP code",
+                "description": "Verifies the OTP code entered by the user via an external API.",
                 "operationId": "74865ce789ff8713ada2fd5e283ead59",
                 "requestBody": {
                     "required": true,
@@ -100,13 +100,13 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "OTP успешно верифицирован"
+                        "description": "OTP successfully verified"
                     },
                     "400": {
-                        "description": "Неверный код или данные"
+                        "description": "Invalid code or data"
                     },
                     "500": {
-                        "description": "Ошибка сервера"
+                        "description": "Server error"
                     }
                 }
             }
@@ -116,7 +116,7 @@
         "securitySchemes": {
             "BearerAuth": {
                 "type": "http",
-                "description": "JWT аутентификация",
+                "description": "JWT authentication",
                 "bearerFormat": "JWT",
                 "scheme": "bearer"
             }

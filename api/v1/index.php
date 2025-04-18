@@ -9,21 +9,21 @@ use Dotenv\Dotenv;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-// Загружаем переменные окружения из .env
+// Load environment variables from .env
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-// Создаем экземпляр приложения
+// Create an instance of the application
 $app = new App();
 
 $app->use(new CorsMiddleware());
 
-// Регистрируем маршрут для аутентификации
+// Register route for authentication
 $app->use('/api/v1/auth', 'routes/authRoutes.php');
 
-// Регистрируем middleware для авторизации
+// Register middleware for authorization
 //$app->use(new AuthMiddleware());
 
-// Обрабатываем запрос
+// Handle the request
 $app->handleRequest();
 

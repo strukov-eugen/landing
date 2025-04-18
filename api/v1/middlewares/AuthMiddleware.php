@@ -18,7 +18,7 @@ class AuthMiddleware
 
     public function handle(Request $req, Response $res, $next)
     {
-        // Получаем токен из заголовка Authorization
+        // Get the token from the Authorization header
         $authorizationHeader = $req->getHeaders()['Authorization'] ?? 
             $req->getHeaders()['AUTHORIZATION'] ?? '';
 
@@ -27,7 +27,7 @@ class AuthMiddleware
             return;
         }
 
-        // Извлекаем сам токен из Authorization header
+        // Extract the token from the Authorization header
         $token = str_replace('Bearer ', '', $authorizationHeader);
 
         if (empty($token)) {
@@ -36,16 +36,16 @@ class AuthMiddleware
         }
 
         try {
-            // Декодируем токен с помощью секрета
+            // Decode the token using the secret key
             $decoded = JWT::decode($token, new Key($this->jwtSecret, 'HS256'));
-            // Добавляем данные пользователя в объект запроса
+            // Add the user data to the request object
             $req->setUser((array)$decoded);
         } catch (\Exception $e) {
             $res->json(['message' => 'Token is not valid', 'error' => $e->getMessage()], 403);
             return;
         }
 
-        // Все проверки прошли, передаем управление дальше
+        // All checks passed, pass control to the next middleware
         $next();
     }
 }

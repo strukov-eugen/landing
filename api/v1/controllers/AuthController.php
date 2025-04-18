@@ -10,7 +10,7 @@ class AuthController {
     public function sendCode(Request $req, Response $res) {
         $body = $req->getBody();
         $phone = $body['phone'] ?? null;
-        $clickId = $body['clickid'] ?? 'default-click-id'; // может прийти с фронта
+        $clickId = $body['clickid'] ?? 'default-click-id';
         $userIP = $_SERVER['REMOTE_ADDR'];
         $userUA = $_SERVER['HTTP_USER_AGENT'];
         $evinaId = $body['evinaRequestId'] ?? null;

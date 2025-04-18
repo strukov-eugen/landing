@@ -48,17 +48,15 @@
           <input type="tel" id="phone" class="phone-input" placeholder="Enter your phone number" maxlength="15">
         </div>
         
-        <button id="continue-btn" class="continue-button">CONTINUE!</button>
+        <button id="continue-btn" data-button-id="your_button_id" class="continue-button">CONTINUE!</button>
       </div>
       
       <div id="verification-section" class="form-section hidden">
         <p id="code-instruction" class="instruction">Enter verification code</p>
         
         <div class="verification-inputs">
-          <input type="text" maxlength="1" class="code-input" inputmode="numeric">
+          <input type="text" inputmode="tel" pattern="[0-9]{4}" placeholder="_ _ _ _" name="pin" value="" maxlength="4" size="10" required="" class="code-input" id="pin" autocomplete="off">
         </div>
-        
-        <div id="error-message" class="error-message hidden"></div>
         
         <button id="verify-btn" class="continue-button">VERIFY</button>
         <button id="resend-btn" class="resend-button">Resend Code</button>
@@ -73,6 +71,9 @@
         </div>
         <p id="success-text" class="success-text">Verification successful!</p>
       </div>
+
+      <div id="error-message" class="error-message hidden"></div>
+
     </main>
     
     <footer class="footer">
