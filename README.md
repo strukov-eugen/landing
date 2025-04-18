@@ -16,7 +16,7 @@ A lightweight PHP-based API service for handling OTP authentication and user ope
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/landing.git
+git clone https://github.com/strukov-eugen/landing.git
 ```
 ```bash
 cd landing
